@@ -37,8 +37,8 @@
   }
 }
 .image {
-  background-image: url("./images/download.jpg");
-  background-size: "cover";
+  background-image: url('./images/download.jpg');
+  background-size: 'cover';
   background-color: red;
   object-fit: cover;
   height: 100vh;

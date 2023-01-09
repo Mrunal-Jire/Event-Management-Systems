@@ -1,10 +1,21 @@
 .reg {
-  background: url("../images/Eregister.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Merriweather', serif;
 }
 .reg-form {
-  /* background-color: #000000e9; */
-  /* background-color: #454545; */
+  background: rgb(70, 6, 100);
+  background: radial-gradient(
+    circle,
+    rgba(70, 6, 100, 0.99) 37%,
+    rgba(0, 250, 255, 1) 100%,
+    rgba(249, 154, 161, 1) 180%
+  );
+}
 
+.register-img {
+  background-image: url('../images/register2.jpg');
+  background-repeat: none;
+  background-size: cover;
 }

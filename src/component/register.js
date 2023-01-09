@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
-import "../css/register.css";
-import { Link } from "react-router-dom";
-import swal from "sweetalert2";
-import base_url from "../api/bootapi";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import '../css/register.css'
+import { Link } from 'react-router-dom'
+import swal from 'sweetalert2'
+import base_url from '../api/bootapi'
+import axios from 'axios'
 
 function Register() {
   useEffect(() => {
-    document.title = "Register";
-  }, []);
+    document.title = 'Register'
+  }, [])
 
-  let [uname, setUname] = useState("");
-  let [ucity, setUcity] = useState("");
-  let [uphone, setUphone] = useState("");
-  let [uemail, setUemail] = useState("");
-  let [upassword, setUpassword] = useState("");
-  let [uconpassword, setUconpassword] = useState("");
-  let [usecurityQues, setUsecurityQues] = useState("");
-  let [usecurityAns, setUsecurityAns] = useState("");
-  let [userAddress, setUserAddress]=useState("");
+  // Declaring fields
+  let [uname, setUname] = useState('')
+  let [ucity, setUcity] = useState('')
+  let [uphone, setUphone] = useState('')
+  let [uemail, setUemail] = useState('')
+  let [upassword, setUpassword] = useState('')
+  let [uconpassword, setUconpassword] = useState('')
+  let [usecurityQues, setUsecurityQues] = useState('')
+  let [usecurityAns, setUsecurityAns] = useState('')
+ 
 
-  let unameinp = (e) => setUname(e.target.value);
-  let ucityinp = (e) => setUcity(e.target.value);
-  let uphoneinp = (e) => setUphone(e.target.value);
-  let uemailinp = (e) => setUemail(e.target.value);
-  let upasswordinp = (e) => setUpassword(e.target.value);
-  let uconpasswordinp = (e) => setUconpassword(e.target.value);
-  let usecurityquesinp = (e) => setUsecurityQues(e.target.value);
-  let usecurityansinp = (e) => setUsecurityAns(e.target.value);
-  let useraddress=(e)=>setUserAddress(e.target.value);
+  let unameinp = (e) => setUname(e.target.value)
+  let ucityinp = (e) => setUcity(e.target.value)
+  let uphoneinp = (e) => setUphone(e.target.value)
+  let uemailinp = (e) => setUemail(e.target.value)
+  let upasswordinp = (e) => setUpassword(e.target.value)
+  let uconpasswordinp = (e) => setUconpassword(e.target.value)
+  let usecurityquesinp = (e) => setUsecurityQues(e.target.value)
+  let usecurityansinp = (e) => setUsecurityAns(e.target.value)
 
   let user = {
     name: uname,
@@ -39,8 +39,7 @@ function Register() {
     conpassword: uconpassword,
     securityQues: usecurityQues,
     securityAns: usecurityAns,
-    address:userAddress,
-  };
+  }
 
   //Register data
   const registerUser = (data) => {
@@ -48,171 +47,168 @@ function Register() {
       (response) => {
         swal
           .fire({
-            icon: "success",
-            title: "Hurreh!!!",
-            text: "You have registered to a great cause",
+            icon: 'success',
+            title: 'Congratulations!!!',
+            text: 'You have registered successfully',
           })
-          .then(function () {
-            window.location = "/";
-          });
-        clearFields();
+         .then(function () {
+            window.location = '/';
+          }) 
+        clearFields()
       },
       (error) => {
-        console.log(error);
         swal.fire({
-          icon: "error",
-          title: "Enter Email ID first",
-          text: "We need to check if the email is already registered or not",
-        });
-      }
-    );
-  };
+          icon: 'error',
+          title: 'Enter Email ID first',
+          text: 'We need to check if the email is already registered or not',
+        })
+      },
+    )
+  }
 
   //Check Email
   const checkEmail = (data) => {
     axios.post(`${base_url}/findbyemail`, data).then(
       (response) => {
-        console.log(response);
+        //console.log(response)
         if (response.data.length == 0) {
-          registerUser(user);
-          clearErrors();
-          clearFields();
+
+          registerUser(user)
+          clearErrors()
+          clearFields()
         } else {
           swal.fire({
-            icon: "error",
-            title: "Oh no!!!",
-            text: "Email is already Registered",
-          });
+            icon: 'error',
+            title: 'Oh no!!!',
+            text: 'Email is already Registered',
+          })
         }
       },
       (error) => {
-        console.log(error);
+        console.log(error)
         swal.fire({
-          icon: "error",
-          title: "Oh no!",
-          text: "Server is down",
-        });
-      }
-    );
-  };
+          icon: 'error',
+          title: 'Oh no!',
+          text: 'Server is down',
+        })
+      },
+    )
+  }
 
-  let [ename, setEname] = useState();
-  let [ecity, setEcity] = useState();
-  let [eemail, setEemail] = useState();
-  let [ephone, setEphone] = useState();
-  let [epassword, setEpassword] = useState();
-  let [econpassword, setEconpassword] = useState();
-  let [esecurityQues, setEsecurityQues] = useState();
-  let [esecurityAns, setEsecurityAns] = useState();
-  let [etnc, setEtnc] = useState();
+  let [ename, setEname] = useState()
+  let [ecity, setEcity] = useState()
+  let [eemail, setEemail] = useState()
+  let [ephone, setEphone] = useState()
+  let [epassword, setEpassword] = useState()
+  let [econpassword, setEconpassword] = useState()
+  let [esecurityQues, setEsecurityQues] = useState()
+  let [esecurityAns, setEsecurityAns] = useState()
+  let [etnc, setEtnc] = useState()
 
   function clearErrors() {
-    document.getElementById("name").classList.remove("is-invalid");
-    setEname("");
+    document.getElementById('name').classList.remove('is-invalid')
+    setEname('')
 
-    document.getElementById("city").classList.remove("is-invalid");
-    setEcity("");
+    document.getElementById('city').classList.remove('is-invalid')
+    setEcity('')
 
-    document.getElementById("phone").classList.remove("is-invalid");
-    setEphone("");
+    document.getElementById('phone').classList.remove('is-invalid')
+    setEphone('')
 
-    document.getElementById("email").classList.remove("is-invalid");
-    setEemail("");
+    document.getElementById('email').classList.remove('is-invalid')
+    setEemail('')
 
-    document.getElementById("password").classList.remove("is-invalid");
-    setEpassword("");
+    document.getElementById('password').classList.remove('is-invalid')
+    setEpassword('')
 
-    document.getElementById("conpassword").classList.remove("is-invalid");
-    setEconpassword("");
+    document.getElementById('conpassword').classList.remove('is-invalid')
+    setEconpassword('')
 
-    document.getElementById("securityQues").classList.remove("is-invalid");
-    setEsecurityQues("");
+    document.getElementById('securityQues').classList.remove('is-invalid')
+    setEsecurityQues('')
 
-    document.getElementById("securityAns").classList.remove("is-invalid");
-    setEsecurityAns("");
+    document.getElementById('securityAns').classList.remove('is-invalid')
+    setEsecurityAns('')
 
-    document.getElementById("tnc").classList.remove("is-invalid");
-    setEtnc("");
+    document.getElementById('tnc').classList.remove('is-invalid')
+    setEtnc('')
   }
 
   function clearFields() {
-    setUname("");
-    setUcity("");
-    setUphone("");
-    setUemail("");
-    setUpassword("");
-    setUconpassword("");
-    setUsecurityQues("");
-    setUsecurityAns("");
-    document.getElementById("tnc").checked = false;
+    setUname('')
+    setUcity('')
+    setUphone('')
+    setUemail('')
+    setUpassword('')
+    setUconpassword('')
+    setUsecurityQues('')
+    setUsecurityAns('')
+    document.getElementById('tnc').checked = false
   }
 
   let validate = () => {
     if (
-      uname.trim() === "" ||
-      ucity === "" ||
-      uphone.trim() === "" ||
-      uemail.trim() === "" ||
-      upassword.trim() === "" ||
-      uconpassword.trim === "" ||
-      usecurityQues.trim() === "" ||
-      usecurityAns.trim() === ""
+      uname.trim() === '' ||
+      ucity.trim() === '' ||
+      uphone.trim() === '' ||
+      uemail.trim() === '' ||
+      upassword.trim() === '' ||
+      uconpassword.trim === '' ||
+      usecurityQues.trim() === '' ||
+      usecurityAns.trim() === ''
     ) {
-      swal.fire("All fields are  required");
+      swal.fire('All fields are  required')
     } else if (
       uname.search(/^[a-zA-Z ]*$/) < 0 ||
       uname.length < 3 ||
       uname.length > 40
     ) {
-      document.getElementById("name").classList.add("is-invalid");
+      document.getElementById('name').classList.add('is-invalid')
       setEname(
-        "Please enter characters only and must have length of minimum 3 and maximum 30"
-      );
-    } else if (ucity === "") {
-      document.getElementById("city").classList.add("is-invalid");
-      setEcity("Enter City");
-    } else if (uphone === "" || uphone.search(/^[789][0-9]{9}$/) < 0) {
-      document.getElementById("phone").classList.add("is-invalid");
-      setEphone("Enter valid Mobile Number");
+        'Please enter characters only and must have length of minimum 3 and maximum 30',
+      )
+    } else if (ucity === '') {
+      document.getElementById('city').classList.add('is-invalid')
+      setEcity('Enter City')
+    } else if (uphone === '' || uphone.search(/^[789][0-9]{9}$/) < 0) {
+      document.getElementById('phone').classList.add('is-invalid')
+      setEphone('Enter valid Mobile Number')
     } else if (
-      uemail === "" ||
+      uemail === '' ||
       uemail.search(/^[a-zA-Z0-9._]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) < 0
     ) {
-      document.getElementById("email").classList.add("is-invalid");
-      setEemail("Enter valid Email ID");
+      document.getElementById('email').classList.add('is-invalid')
+      setEemail('Enter valid Email ID')
     } else if (
-      upassword === "" ||
+      upassword === '' ||
       upassword.search(
-        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/
+        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
       ) < 0 ||
       upassword.length < 6
     ) {
-      document.getElementById("password").classList.add("is-invalid");
+      document.getElementById('password').classList.add('is-invalid')
       setEpassword(
-        "Enter a password with atleast 8 characters and must include 1 capital, 1 number and 1 special character"
-      );
+        'Enter a password with atleast 8 characters and must include 1 capital, 1 number and 1 special character',
+      )
     } else if (upassword !== uconpassword) {
-      document.getElementById("conpassword").classList.add("is-invalid");
-      setEconpassword("Password mismatch.");
-    } else if (usecurityAns.length <= 3 || usecurityAns.length > 40) {
-      document.getElementById("securityAns").classList.add("is-invalid");
-      setEsecurityAns("Enter Answer lenght above 2 or less than 40");
-    } else if (document.getElementById("tnc").checked == false) {
-      document.getElementById("tnc").classList.add("is-invalid");
-      setEtnc("Please accept terms and conditions");
+      document.getElementById('conpassword').classList.add('is-invalid')
+      setEconpassword('Password mismatch.')
+    } else if (usecurityAns.length <= 2 || usecurityAns.length > 40) {
+      document.getElementById('securityAns').classList.add('is-invalid')
+      setEsecurityAns('Enter Answer lenght above 2 or less than 40')
+    } else if (document.getElementById('tnc').checked == false) {
+      document.getElementById('tnc').classList.add('is-invalid')
+      setEtnc('Please accept terms and conditions')
     } else {
-      checkEmail(user);
+      checkEmail(user)
     }
-  };
+  }
 
   return (
-    <div>
-      <div className="vh-100 d-flex reg">
+    <div style={{ marginTop: '80px', marginBottom: '38px' }}>
+      <div className="vh-100 d-flex reg register-img">
         <div className="m-auto w-50 pt-2 ps-5 pe-5 pb-2  align-self-center text-white reg-form">
-          <h1 className="text-center fw-bold mb-3" style={{ color: "#ba8b00" }}>
-            EVENT MANAGEMENT
-          </h1>
-          <h1 className="text-center display-4">Register</h1>
+          <h1 className="text-center display-4 myfont">Register</h1>
 
           <form className="row g-3 mt-1">
             <div className="col-md-6">
@@ -224,19 +220,20 @@ function Register() {
                 className="form-control"
                 id="name"
                 name="name"
-                placeholder="Full name"
+                placeholder="Full Name"
                 onChange={unameinp}
                 onFocus={clearErrors}
                 value={uname}
                 required
               />
-              <div class="invalid-feedback fs-6 fw-bold">{ename}</div>
+              <div className="invalid-feedback fs-6 fw-bold">{ename}</div>
             </div>
             <div className="col-md-6">
               <label for="city" className="form-label fs-5">
                 City
               </label>
               <select
+           
                 id="city"
                 className="form-select"
                 name="city"
@@ -245,13 +242,12 @@ function Register() {
                 value={ucity}
                 required
               >
-                <option value=""></option>
-                <option value="Mumbai">Mumbai</option>
-                <option value="Pune">Pune</option>
-                <option value="Banglore">Banglore</option>
-                <option value="Hyderabad">Hyderabad</option>
+                <option value="">Enter city</option>
+                <option value="Pimpalner">Pimpalner</option>
+                <option value="Dhule">Dhule</option>
+                <option value="Nashik">Nashik</option>
               </select>
-              <div class="invalid-feedback fs-6 fw-bold">{ecity}</div>
+              <div className="invalid-feedback fs-6 fw-bold">{ecity}</div>
             </div>
             <div className="col-md-6">
               <label for="phone" className="form-label fs-5">
@@ -268,7 +264,7 @@ function Register() {
                 value={uphone}
                 required
               />
-              <div class="invalid-feedback fs-6 fw-bold">{ephone}</div>
+              <div className="invalid-feedback fs-6 fw-bold">{ephone}</div>
             </div>
             <div className="col-md-6">
               <label for="email" className="form-label fs-5">
@@ -285,7 +281,7 @@ function Register() {
                 value={uemail}
                 required
               />
-              <div class="invalid-feedback fs-6 fw-bold">{eemail}</div>
+              <div className="invalid-feedback fs-6 fw-bold">{eemail}</div>
             </div>
             <div className="col-md-6">
               <label for="password" className="form-label fs-5">
@@ -302,7 +298,7 @@ function Register() {
                 value={upassword}
                 required
               />
-              <div class="invalid-feedback fs-6 fw-bold">{epassword}</div>
+              <div className="invalid-feedback fs-6 fw-bold">{epassword}</div>
             </div>
             <div className="col-md-6">
               <label for="conpassword" className="form-label fs-5">
@@ -319,7 +315,9 @@ function Register() {
                 value={uconpassword}
                 required
               />
-              <div class="invalid-feedback fs-6 fw-bold">{econpassword}</div>
+              <div className="invalid-feedback fs-6 fw-bold">
+                {econpassword}
+              </div>
             </div>
 
             <div className="col-md-6">
@@ -335,7 +333,7 @@ function Register() {
                 value={usecurityQues}
                 required
               >
-                <option value=""></option>
+                <option value="">Select Questions</option>
                 <option value="Which was your first vehicle?">
                   Which was your first vehicle?
                 </option>
@@ -346,7 +344,9 @@ function Register() {
                   Which was your first school?
                 </option>
               </select>
-              <div class="invalid-feedback fs-6 fw-bold">{esecurityQues}</div>
+              <div className="invalid-feedback fs-6 fw-bold">
+                {esecurityQues}
+              </div>
             </div>
             <div className="col-md-6">
               <label for="securityAnswer" className="form-label fs-5">
@@ -363,26 +363,9 @@ function Register() {
                 value={usecurityAns}
                 required
               />
-              <div class="invalid-feedback fs-6 fw-bold">{esecurityAns}</div>
-            </div>
-
-           
-            <div className="col-md-6">
-              <label for="email" className="form-label fs-5">
-                Address
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="addr"
-                name="email"
-                placeholder="Enter your address"
-                onChange={useraddress}
-                onFocus={clearErrors}
-                value={userAddress}
-                required
-              />
-              <div class="invalid-feedback fs-6 fw-bold">{eemail}</div>
+              <div className="invalid-feedback fs-6 fw-bold">
+                {esecurityAns}
+              </div>
             </div>
             <div className="col-md-7 text-right mt-3">
               <input
@@ -395,7 +378,8 @@ function Register() {
               <label for="tnc" className="form-label fs-5">
                 Accept terms and conditions
               </label>
-              <div class="invalid-feedback fs-6 fw-bold">{etnc}</div>
+
+              <div className="invalid-feedback fs-6 fw-bold">{etnc}</div>
             </div>
             <div className="col-md-5 text-left mt-3">
               <Link
@@ -408,14 +392,15 @@ function Register() {
               </Link>
             </div>
             <div className="col-md-12 text-center">
-              <h4 className="fs-4">
-                Already Registered?
-                <Link to="/" href="login.html" className="text-decoration-none">
-                  Login here
-                </Link>
-              </h4>
+              <h4 className="fs-4 myfont">Already Registered?</h4>
+              <Link
+                to="/login"
+                href="login.html"
+                className="text-decoration-none form-label"
+              >
+                Login here
+              </Link>
             </div>
-        
 
             <div className="col-md-12 text-center">
               <input
@@ -429,7 +414,7 @@ function Register() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Register;
+export default Register

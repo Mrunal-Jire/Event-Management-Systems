@@ -1,10 +1,10 @@
 .login-img {
-  background-image: url("../images/event-management-bg.jpg");
+  background-image: url('../images/login4.jpg');
   background-repeat: none;
-  background-size: cover;
+  background-size: contain;
 }
 .log {
-  background-color: #f8f9facf;
+  background-color: #dcc9d6ca;
 }
 .log-img {
   height: 100%;
